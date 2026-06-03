@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load survey_filters %}
+<html>
+<head>
+    <title>Результаты: {{ survey.title }} | PulseHR</title>
+    <link rel="stylesheet" href="/static/surveys/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'survey_list_hr' %}" class="back-link">← Назад к списку опросов</a>
+
+        <h1>📈 {{ survey.title }}</h1>
+        <p>{{ survey.description }}</p>
+
+        {% for question in questions %}
+        <div class="question-card">
+            <h3>{{ forloop.counter }}. {{ question.text }}</h3>
+
+            {% with result=results|get_item:question.id %}
+                {% if question.question_type == 'rating' %}
+                    <div class="avg-score">Средняя оценка: {{ result.avg }}/5</div>
+                    <p>Всего ответов: {{ result.total }}</p>
+
+                    <h4>Распределение оценок:</h4>
+                    {% for rating, count in result.distribution.items %}
+                    <div class="stat-item">
+                        <span>{{ rating }} ★ - {{ count }} ответов</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: {% widthratio count result.total 100 %}%;">
+                                {% widthratio count result.total 100 %}%
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                {% elif question.question_type == 'text' %}
+                    <p>📝 Всего ответов: {{ result.total }}</p>
+                    <h4>Текстовые ответы:</h4>
+                    {% if result.answers %}
+                        {% for answer in result.answers %}
+                        <div class="answer-text">💬 {{ answer }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <p>Нет текстовых ответов.</p>
+                    {% endif %}
+
+                {% elif question.question_type == 'choice' %}
+                    <p>Всего ответов: {{ result.total }}</p>
+                    <h4>Статистика выбора:</h4>
+                    {% for choice_text, stats in result.stats.items %}
+                    <div class="stat-item">
+                        <span><strong>{{ choice_text }}</strong> - {{ stats.count }} ответов ({{ stats.percent }}%)</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: {{ stats.percent }}%; background: #17a2b8;">
+                                {{ stats.percent }}%
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        {% empty %}
+        <p>Нет вопросов в этом опросе.</p>
+        {% endfor %}
+
+        <div style="margin-top: 30px;">
+            <a href="{% url 'survey_list_hr' %}" class="btn">← Ко всем опросам</a>
+        </div>
+    </div>
+</body>
+</html>

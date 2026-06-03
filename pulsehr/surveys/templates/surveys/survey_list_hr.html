@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Панель | PulseHR</title>
+    <link rel="stylesheet" href="/static/surveys/css/style.css">
+</head>
+<body>
+    <div class="hr-container">  <!-- было: container, стало: hr-container -->
+        <h1>📊 HR Панель управления</h1>
+
+        <div style="margin-bottom: 20px;">
+            <a href="/admin/" class="btn btn-admin" target="_blank">⚙️ Админка Django</a>
+            <a href="{% url 'survey_list' %}" class="btn">📋 Сотрудник: список опросов</a>
+            <a href="{% url 'custom_logout' %}" class="btn" style="background: #dc3545;">🚪 Выход</a>
+
+        </div>
+
+        <h2>Все опросы</h2>
+        {% if surveys %}
+            {% for survey in surveys %}
+            <div class="survey-card">
+                <h3>{{ survey.title }}</h3>
+                <p>{{ survey.description|default:"Без описания" }}</p>
+                <div class="stats">
+                    <span class="badge {% if not survey.is_active %}badge-inactive{% endif %}">
+                        {% if survey.is_active %}✅ Активен{% else %}⛔ Неактивен{% endif %}
+                    </span>
+                    <span class="badge">
+                        {% if survey.is_anonymous %}🔒 Анонимный{% else %}👤 Именной{% endif %}
+                    </span>
+                    <span>📅 Создан: {{ survey.created_at|date:"d.m.Y H:i" }}</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <a href="{% url 'survey_results' survey.id %}" class="btn btn-results">📈 Смотреть результаты</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Нет созданных опросов. Создайте первый в <a href="/admin/">админке</a>.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

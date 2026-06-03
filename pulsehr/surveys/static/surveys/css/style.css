@@ -1,0 +1,347 @@
+/* ========================================
+   БАЗОВЫЕ СТИЛИ ДЛЯ ВСЕХ СТРАНИЦ
+   ======================================== */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ========================================
+   КНОПКИ
+   ======================================== */
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+.btn-results {
+    background: #28a745;
+}
+
+.btn-results:hover {
+    background: #218838;
+}
+
+.btn-admin {
+    background: #6c757d;
+}
+
+.btn-admin:hover {
+    background: #5a6268;
+}
+
+.btn-logout {
+    background: #dc3545;
+}
+
+.btn-logout:hover {
+    background: #c82333;
+}
+
+button {
+    background: #28a745;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+/* ========================================
+   СТРАНИЦА ВХОДА (login.html)
+   ======================================== */
+
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 350px;
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.login-container button:hover {
+    background: #0056b3;
+}
+
+.error {
+    color: red;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* ========================================
+   СТРАНИЦА ВЫХОДА (logged_out)
+   ======================================== */
+
+.logout-container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 500px;
+    margin: 100px auto;
+}
+
+.logout-container h1 {
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+/* ========================================
+   СПИСОК ОПРОСОВ (survey_list.html)
+   ======================================== */
+
+.survey-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    background: white;
+}
+
+.survey-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #333;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #333;
+}
+
+h3 {
+    color: #555;
+}
+
+/* ========================================
+   СТРАНИЦА ОПРОСА (survey_detail.html)
+   ======================================== */
+
+.question {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.rating {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.rating label {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+input[type="radio"], input[type="text"], textarea {
+    margin: 5px 0;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+/* ========================================
+   HR ПАНЕЛЬ (survey_list_hr.html)
+   ======================================== */
+
+.hr-header {
+    margin-bottom: 20px;
+}
+
+/* Центровка для HR панели */
+.hr-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.badge {
+    background: #007bff;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.badge-inactive {
+    background: #dc3545;
+}
+
+.stats {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* ========================================
+   РЕЗУЛЬТАТЫ ОПРОСА (survey_results.html)
+   ======================================== */
+
+.question-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    background: white;
+}
+
+.avg-score {
+    font-size: 32px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.rating-bar {
+    background: #e9ecef;
+    border-radius: 10px;
+    margin: 10px 0;
+    height: 30px;
+    position: relative;
+}
+
+.rating-fill {
+    background: #28a745;
+    border-radius: 10px;
+    height: 100%;
+    line-height: 30px;
+    color: white;
+    padding-left: 10px;
+}
+
+.stat-item {
+    margin: 10px 0;
+}
+
+.percent {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.answer-text {
+    background: #f8f9fa;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border-left: 3px solid #007bff;
+}
+
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   СТРАНИЦА СПАСИБО (thanks.html)
+   ======================================== */
+
+.thanks-container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 600px;
+    margin: 100px auto;
+}
+
+.thanks-container h1 {
+    color: #28a745;
+    border-bottom: none;
+}
+
+/* ========================================
+   ЦЕНТРОВКА ДЛЯ СТРАНИЦЫ ВЫХОДА
+   ======================================== */
+
+body.logout-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}

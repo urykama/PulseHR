@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ survey.title }} | PulseHR</title>
+    <link rel="stylesheet" href="/static/surveys/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ survey.title }}</h1>
+        <p>{{ survey.description }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            {% for question in questions %}
+            <div class="question">
+                <strong>{{ forloop.counter }}. {{ question.text }}</strong>
+
+                {% if question.question_type == 'rating' %}
+                <div class="rating">
+                    <label><input type="radio" name="question_{{ question.id }}" value="1" required> 1</label>
+                    <label><input type="radio" name="question_{{ question.id }}" value="2" required> 2</label>
+                    <label><input type="radio" name="question_{{ question.id }}" value="3" required> 3</label>
+                    <label><input type="radio" name="question_{{ question.id }}" value="4" required> 4</label>
+                    <label><input type="radio" name="question_{{ question.id }}" value="5" required> 5</label>
+                </div>
+
+                {% elif question.question_type == 'text' %}
+                <textarea name="question_{{ question.id }}" rows="3" required placeholder="Введите ваш ответ..."></textarea>
+
+                {% elif question.question_type == 'choice' %}
+                <div>
+                    {% for choice in question.choices.all %}
+                    <label>
+                        <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" required>
+                        {{ choice.text }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit">Отправить ответы</button>
+        </form>
+    </div>
+</body>
+</html>
