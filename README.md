@@ -14,7 +14,7 @@
 
 ```bash
 # Склонировать репозиторий
-git clone https://github.com/ВАШ_НИКН/PulseHR.git
+git clone https://github.com/urykama/PulseHR.git
 cd PulseHR
 
 # Создать виртуальное окружение
